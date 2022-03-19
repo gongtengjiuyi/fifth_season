@@ -1,7 +1,1 @@
-/**index.wxss**/
-
-page {
-  padding-top: 54rpx;
-  background-color: #f6f6f6;
-  padding-bottom: 60rpx;
-}
+.home{width:100%;height:auto}swiper swiper-item{width:100%;height:auto}swiper swiper-item image{display:block;width:100%;height:300rpx}.nav_bar{width:100%;height:50px;padding:20rpx 0;margin-bottom:6rpx;display:flex;background-color:#fff}.nav_bar navigator{width:20%;height:auto;text-align:center;display:flex;justify-content:center;align-items:center;flex-direction:column}.nav_bar navigator image{width:60rpx;height:60rpx;margin-bottom:5rpx}.nav_bar navigator text{font-size:26rpx}.newbook{width:100%;background-color:#fff}.newbook .title{display:flex;justify-content:space-between;padding:0 20rpx}.newbook .title .now{color:#000;font-size:32rpx;line-height:100rpx;font-weight:700}.newbook .title .more{color:#2e2e2e;font-size:28rpx;height:100rpx;line-height:100rpx}.newbook .contentlist swiper swiper-item{width:150rpx !important;height:300rpx !important;padding:0 20rpx}.newbook .contentlist swiper swiper-item :nth-child(1){padding:0 20rpx 0 0}.newbook .contentlist swiper swiper-item image{width:100%}.newbook .contentlist .item{width:100%}.newbook .contentlist .item .left image{width:200rpx}

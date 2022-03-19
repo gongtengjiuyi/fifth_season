@@ -1,1 +1,53 @@
-<view class="demo">1234</view>
+<view class="home">
+    <swiper autoplay="{{true}}" indicator-dots="{{true}}" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="rgba(255,255,255,.3)">
+        <swiper-item wx:for="{{BannerList}}" wx:key="index">
+            <image src="{{item.bannerUrl}}"></image>
+        </swiper-item>
+    </swiper>
+    <view class="nav_bar">
+        <navigator>
+            <image src="../../images/runk.png"></image>
+            <text>榜单</text>
+        </navigator>
+        <navigator>
+            <image src="../../images/end.png"></image>
+            <text>完结</text>
+        </navigator>
+        <navigator>
+            <image src="../../images/free.png"></image>
+            <text>免费</text>
+        </navigator>
+        <navigator>
+            <image src="../../images/new.png"></image>
+            <text>新书</text>
+        </navigator>
+        <navigator>
+            <image src="../../images/sort.png"></image>
+            <text>分类</text>
+        </navigator>
+    </view>
+    <view class="newbook" wx:for="{{ChannelList}}" wx:for-index="index1" wx:for-item="item1" wx:key="index1">
+        <view class="title">
+            <view class="now">{{item1.title}}</view>
+            <view class="more">查看更多</view>
+        </view>
+        <view class="contentlist">
+            <swiper wx:if="{{item1.title=='今日必读'}}" next-margin="20rpx">
+                <swiper-item wx:for="{{item1.bookList}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2">
+                    <image src="{{item2.coverUrl}}"></image>
+                    <view class="desc"></view>
+                </swiper-item>
+            </swiper>
+            <block wx:if="{{item1.title!='今日必读'}}">
+                <view class="item" wx:for="{{item1.bookList}}" wx:for-index="index3" wx:for-item="item3" wx:key="index3">
+                    <view class="left">
+                        <image src="{{item3.coverUrl}}"></image>
+                    </view>
+                    <view class="right">
+                        <h4>{{item3.title}}</h4>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+</view>
