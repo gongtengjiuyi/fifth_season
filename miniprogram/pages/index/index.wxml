@@ -1,4 +1,4 @@
-<view class="home">
+<view mode="widthFix" class="home">
     <swiper autoplay="{{true}}" indicator-dots="{{true}}" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="rgba(255,255,255,.3)">
         <swiper-item wx:for="{{BannerList}}" wx:key="index">
             <image src="{{item.bannerUrl}}"></image>
@@ -35,7 +35,10 @@
             <swiper wx:if="{{item1.title=='今日必读'}}" next-margin="20rpx">
                 <swiper-item wx:for="{{item1.bookList}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2">
                     <image src="{{item2.coverUrl}}"></image>
-                    <view class="desc"></view>
+                    <view class="desc">
+                        <view class="name">{{item2.title}}</view>
+                        <view class="authorName">{{item2.authorName}}</view>
+                    </view>
                 </swiper-item>
             </swiper>
             <block wx:if="{{item1.title!='今日必读'}}">
@@ -45,6 +48,13 @@
                     </view>
                     <view class="right">
                         <h4>{{item3.title}}</h4>
+                        <view class="intro">{{item3.intro}}</view>
+                        <view class="bookWriter">
+                            <text class="authorName">{{item3.authorName}}</text>
+                            <text class="allWords">{{Math.round(item3.allWords/10000)}}万字</text>
+                            <text class="categoryName">{{item3.categoryName}}</text>
+                            <text class="status">连载</text>
+                        </view>
                     </view>
                 </view>
             </block>

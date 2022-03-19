@@ -10,5 +10,6 @@
         "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json",
-    "lazyCodeLoading": "requiredComponents"
+    "lazyCodeLoading": "requiredComponents",
+    "style": "v2"
 }

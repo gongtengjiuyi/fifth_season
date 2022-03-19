@@ -32,10 +32,10 @@
         "userConfirmedBundleSwitch": false,
         "packNpmManually": true,
         "packNpmRelationList": [
-            {
-                "packageJsonPath": "./package.json",
-                "miniprogramNpmDistDir": "./"
-            }
+          {
+            "packageJsonPath": "./package.json",
+            "miniprogramNpmDistDir": "./miniprogram/"
+          }
         ],
         "minifyWXSS": true,
         "disableUseStrict": false,
@@ -46,7 +46,7 @@
     },
     "appid": "wx1f67cad3daeb9923",
     "projectname": "fifth_season",
-    "libVersion": "2.14.1",
+    "libVersion": "2.23.0",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
     "condition": {
         "search": {
