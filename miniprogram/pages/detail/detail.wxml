@@ -1,0 +1,69 @@
+<view class="detail">
+    <view class="container">
+        <view class="header">
+            <view class="img">
+                <image src="{{bookinfo.coverUrl}}"></image>
+            </view>
+            <view class="info">
+                <view class="title">{{bookinfo.title}}</view>
+                <view class="same">作者：{{bookinfo.authorName}}</view>
+                <view class="same">{{bookinfo.categoryName}}/{{bookinfo.subCategoryName}}</view>
+                <view class="same">{{bookinfo.latestChapter}}</view>
+                <view class="same">{{bookinfo.allWords}}</view>
+            </view>
+        </view>
+        <view class="read">
+            <navigator url="../novel/novel?sourceId={{bookinfo.sourceId}}&title={{bookinfo.title}}">
+                <van-button custom-style="width:100%;height:80rpx;color:#000;font-weight:500;" color="#ffbb1b" type="primary" block>
+                    继续阅读
+                </van-button>
+            </navigator>
+        </view>
+        <view class="hand">
+            <navigator class="channels">
+                <strong></strong>
+                <text class="channel">查看目录</text>
+                <b class="updatetime">更新于八小时前</b>
+                <view class="icon">
+                    <van-icon name="arrow" />
+                </view>
+            </navigator>
+        </view>
+        <view class="bookintro">
+            <view class="title">
+                <strong></strong>
+                <text class="fontSizeChannel">内容简介</text>
+            </view>
+            <view class="content">{{intro}}</view>
+        </view>
+    </view>
+    <view class="bookcomment">
+        <view class="bookcommentlist">
+            <view class="title">
+                <strong></strong>
+                <text class="fontSizeChannel">热门书评</text>
+            </view>
+        </view>
+        <view class="lists">
+            <view class="item" wx:for="{{commentList}}" wx:key="index">
+                <view class="list-header">
+                    <image src="{{item.header}}"></image>
+                    <navigator url="../novel/novel?sourceId={{item.bookId}}">
+                        <text class="nick">{{item.nickname}}读过</text>
+                    </navigator>
+                    <van-icon color="#ffbb1b" wx:for="{{item.score/20}}" wx:for-item="item2" wx:for-index="index2" wx:key="index2" name="star" />
+                    <van-icon wx:for="{{5-(item.score/20)}}" wx:for-item="item3" wx:for-index="index3" wx:key="index3" name="star" />
+                </view>
+                <view class="list-body">
+                    <text user-selectable="{{true}}" class="comment-content">{{item.content}}</text>
+                </view>
+                <view class="list-foot">
+                    <text class="time">{{Date.toLocalTimeString(item.createdOn)}}</text>
+                    <text class="zan">
+                        <van-icon name="good-job-o" />
+                    </text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,61 @@
+.detail .container {
+  width: 100%;
+}
+.detail .container .header {
+  width: 100%;
+  display: flex;
+  padding: 26rpx 30rpx;
+  box-sizing: border-box;
+}
+.detail .container .header .img image {
+  width: 175rpx;
+  height: 250rpx;
+  padding-right: 20rpx;
+}
+.detail .container .header .info {
+  flex: 1;
+}
+.detail .container .header .info .title {
+  color: #2e2e2e;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 60rpx;
+}
+.detail .container .header .info .same {
+  font-size: 26rpx;
+  color: #2e2e2e;
+  opacity: 0.6;
+  line-height: 46rpx;
+}
+.detail .container .read {
+  width: 90%;
+  height: 106rpx;
+  margin: 0 30rpx;
+  box-sizing: border-box;
+  padding-bottom: 26rpx;
+}
+.detail .container .hand {
+  width: 100%;
+}
+.detail .container .hand .channels {
+  height: 97rpx;
+  border-bottom: 18rpx solid #f9f9f9;
+  display: flex;
+  align-items: center;
+}
+.detail .container .hand .channels strong {
+  display: block;
+  width: 6rpx;
+  height: 30rpx;
+  margin: 0 12rpx 0 10rpx;
+  background-color: #ffbb1b;
+}
+.detail .container .hand .channels .channel {
+  color: #2e2e2e;
+  font-size: 32rpx;
+  padding-right: 30rpx;
+}
+.detail .container .hand .channels .updatetime {
+  font-size: 26rpx;
+  color: #2e2e2e;
+}

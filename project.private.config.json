@@ -22,8 +22,8 @@
                     "name": "pages/index/index",
                     "pathName": "pages/index/index",
                     "query": "",
-                    "scene": null,
-                    "launchMode": "default"
+                    "launchMode": "default",
+                    "scene": null
                 },
                 {
                     "name": "pages/deployService/index",
@@ -48,6 +48,27 @@
                     "pathName": "pages/updateRecordResult/index",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "pages/detail/detail",
+                    "pathName": "pages/detail/detail",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "novel",
+                    "pathName": "pages/novel/novel",
+                    "query": "sourceId=dd_1073",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "1",
+                    "pathName": "pages/menu/menu",
+                    "query": "",
+                    "scene": null,
+                    "launchMode": "default"
                 }
             ]
         }

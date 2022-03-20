@@ -1,0 +1,22 @@
+<view class="content">
+    <van-toast id="van-toast" />
+    <view class="title">{{content.chapterTitle}}</view>
+    <rich-text type="text" space="emsp" nodes="{{content.content}}"></rich-text>
+    <view class="line"></view>
+    <view class="bottom">
+        <view class="front same" bind:tap="prev" data-prevChapterId="{{content.prevChapterId}}">
+            <van-icon name="arrow-left" />
+            <text>上一章</text>
+        </view>
+        <navigator url="../menu/menu?sourceId={{content.sourceId}}&chapterId={{content.chapterId}}">
+            <view class="menu same">
+                <van-icon name="coupon-o" />
+                <text>目录</text>
+            </view>
+        </navigator>
+        <view class="next same" bind:tap="next" data-nextChapterId="{{content.nextChapterId}}">
+            <text>下一章</text>
+            <van-icon name="arrow" />
+        </view>
+    </view>
+</view>

@@ -29,20 +29,23 @@
     <view class="newbook" wx:for="{{ChannelList}}" wx:for-index="index1" wx:for-item="item1" wx:key="index1">
         <view class="title">
             <view class="now">{{item1.title}}</view>
-            <view class="more">查看更多</view>
+            <view class="more">查看更多></view>
         </view>
         <view class="contentlist">
             <swiper wx:if="{{item1.title=='今日必读'}}" next-margin="20rpx">
-                <swiper-item wx:for="{{item1.bookList}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2">
-                    <image src="{{item2.coverUrl}}"></image>
-                    <view class="desc">
-                        <view class="name">{{item2.title}}</view>
-                        <view class="authorName">{{item2.authorName}}</view>
-                    </view>
-                </swiper-item>
+                <navigator url="../detail/detail?sourceId={{item2.sourceId}}" wx:for="{{item1.bookList}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2">
+                    <swiper-item>
+                        <image src="{{item2.coverUrl}}"></image>
+                        <view class="desc">
+                            <view class="name">{{item2.title}}</view>
+                            <view class="authorName">{{item2.authorName}}</view>
+                        </view>
+                    </swiper-item>
+                </navigator>
             </swiper>
             <block wx:if="{{item1.title!='今日必读'}}">
-                <view class="item" wx:for="{{item1.bookList}}" wx:for-index="index3" wx:for-item="item3" wx:key="index3">
+                <navigator url="../detail/detail?sourceId={{item3.sourceId}}"  wx:for="{{item1.bookList}}" wx:for-index="index3" wx:for-item="item3" wx:key="index3">
+                    <view class="item">
                     <view class="left">
                         <image src="{{item3.coverUrl}}"></image>
                     </view>
@@ -53,10 +56,13 @@
                             <text class="authorName">{{item3.authorName}}</text>
                             <text class="allWords">{{Math.round(item3.allWords/10000)}}万字</text>
                             <text class="categoryName">{{item3.categoryName}}</text>
-                            <text class="status">连载</text>
+                            <text wx:if="{{item3.status==30}}" class="status30">连载</text>
+                            <text wx:if="{{item3.status==50}}" class="status50">完结</text>
                         </view>
                     </view>
                 </view>
+                </navigator>
+                
             </block>
         </view>
     </view>

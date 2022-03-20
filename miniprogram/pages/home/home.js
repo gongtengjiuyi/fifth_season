@@ -7,14 +7,13 @@ Page({
     BannerList: [],
     ChannelList: [],
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: "https://m.taoyuewenhua.com/ajax/book_mall", //仅为示例，并非真实的接口地址
+      url: "https://m.taoyuewenhua.com/ajax/book_mall", 
       data: {
         ctype: "2",
         seed: "3716",
