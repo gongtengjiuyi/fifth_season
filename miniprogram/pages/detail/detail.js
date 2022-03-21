@@ -14,6 +14,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      wx.showLoading({
+        title:"加载中",
+        mask:true
+      })
         wx.request({
           url: 'https://m.taoyuewenhua.com/ajax/book',
           data:{
@@ -21,6 +25,7 @@ Page({
             sourceId:options.sourceId
           },
           success:(res)=>{
+            wx.hideLoading()
             var reg=/\s/g
               console.log(res.data.data)
               this.setData({

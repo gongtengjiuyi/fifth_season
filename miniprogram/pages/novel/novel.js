@@ -9,11 +9,18 @@ Page({
     sourceId: "",
   },
   next(event) {
-    Toast.success('成功文案');
     this.getnovel(event.currentTarget.dataset.nextchapterid);
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   },
   prev(event) {
     this.getnovel(event.currentTarget.dataset.prevchapterid);
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   },
   getnovel(nextChapterId) {
     wx.request({
@@ -39,23 +46,50 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    wx.request({
-      url: "https://m.taoyuewenhua.com/ajax/chapter_content",
-      data: {
-        sourceName: "tf",
-        sourceId: options.sourceId,
-      },
-      success: (res) => {
-        this.setData({
-          content: res.data.data,
+    if (options.chapterId) {
+      wx.request({
+        url: "https://m.taoyuewenhua.com/ajax/chapter_content",
+        data: {
+          sourceName: "tf",
           sourceId: options.sourceId,
-        });
-        console.log(res);
-      },
-      fail: (err) => {
-        console.log(err);
-      },
-    });
+          chapterId: options.chapterId,
+        },
+        success: (res) => {
+          this.setData({
+            content: res.data.data,
+            sourceId: options.sourceId,
+          });
+          wx.setNavigationBarTitle({
+            title: options.title,
+          });
+          console.log(res);
+        },
+        fail: (err) => {
+          console.log(err);
+        },
+      });
+    } else {
+      wx.request({
+        url: "https://m.taoyuewenhua.com/ajax/chapter_content",
+        data: {
+          sourceName: "tf",
+          sourceId: options.sourceId,
+        },
+        success: (res) => {
+          this.setData({
+            content: res.data.data,
+            sourceId: options.sourceId,
+          });
+          wx.setNavigationBarTitle({
+            title: options.title,
+          });
+          console.log(res);
+        },
+        fail: (err) => {
+          console.log(err);
+        },
+      });
+    }
   },
 
   /**

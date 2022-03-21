@@ -46,7 +46,7 @@
     },
     "appid": "wx1f67cad3daeb9923",
     "projectname": "fifth_season",
-    "libVersion": "2.23.0",
+    "libVersion": "2.23.1",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
     "condition": {
         "search": {

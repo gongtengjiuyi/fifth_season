@@ -1,7 +1,9 @@
 <view class="menu">
     <view class="chapters">
         <view class="item" wx:for="{{chapterlist.chapters}}" wx:key="index">
-            <text>{{item.chapterTitle}}</text>
+            <navigator open-type="redirect" url="../novel/novel?sourceId={{chapterlist.sourceId}}&chapterId={{item.chapterId}}">
+                <text class="{{chapterId==item.chapterId?'active':''}}">{{item.chapterTitle}}</text>
+            </navigator>
         </view>
     </view>
      <view class="bottom">

@@ -1,7 +1,9 @@
 <view mode="widthFix" class="home">
-    <swiper autoplay="{{true}}" indicator-dots="{{true}}" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="rgba(255,255,255,.3)">
+    <swiper circular="true" autoplay="{{true}}" indicator-dots="{{true}}" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="rgba(255,255,255,.3)">
         <swiper-item wx:for="{{BannerList}}" wx:key="index">
-            <image src="{{item.bannerUrl}}"></image>
+            <navigator url="../novel/novel?sourceId={{item.sourceId}}&title={{item.title}}">
+                <image src="{{item.bannerUrl}}"></image>
+            </navigator>
         </swiper-item>
     </swiper>
     <view class="nav_bar">
@@ -29,40 +31,41 @@
     <view class="newbook" wx:for="{{ChannelList}}" wx:for-index="index1" wx:for-item="item1" wx:key="index1">
         <view class="title">
             <view class="now">{{item1.title}}</view>
-            <view class="more">查看更多></view>
+            <navigator url="../more/more?ctype={{item1.ctype}}&mcid={{item1.mcid}}&title={{item1.title}}">
+                <view class="more">查看更多></view>
+            </navigator>
         </view>
         <view class="contentlist">
             <swiper wx:if="{{item1.title=='今日必读'}}" next-margin="20rpx">
-                <navigator url="../detail/detail?sourceId={{item2.sourceId}}" wx:for="{{item1.bookList}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2">
-                    <swiper-item>
+                <swiper-item wx:for="{{item1.bookList}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2">
+                    <navigator url="../detail/detail?sourceId={{item2.sourceId}}">
                         <image src="{{item2.coverUrl}}"></image>
                         <view class="desc">
                             <view class="name">{{item2.title}}</view>
                             <view class="authorName">{{item2.authorName}}</view>
                         </view>
-                    </swiper-item>
-                </navigator>
+                    </navigator>
+                </swiper-item>
             </swiper>
             <block wx:if="{{item1.title!='今日必读'}}">
-                <navigator url="../detail/detail?sourceId={{item3.sourceId}}"  wx:for="{{item1.bookList}}" wx:for-index="index3" wx:for-item="item3" wx:key="index3">
+                <navigator class="items" url="../detail/detail?sourceId={{item3.sourceId}}" wx:for="{{item1.bookList}}" wx:for-index="index3" wx:for-item="item3" wx:key="index3">
                     <view class="item">
-                    <view class="left">
-                        <image src="{{item3.coverUrl}}"></image>
-                    </view>
-                    <view class="right">
-                        <h4>{{item3.title}}</h4>
-                        <view class="intro">{{item3.intro}}</view>
-                        <view class="bookWriter">
-                            <text class="authorName">{{item3.authorName}}</text>
-                            <text class="allWords">{{Math.round(item3.allWords/10000)}}万字</text>
-                            <text class="categoryName">{{item3.categoryName}}</text>
-                            <text wx:if="{{item3.status==30}}" class="status30">连载</text>
-                            <text wx:if="{{item3.status==50}}" class="status50">完结</text>
+                        <view class="left">
+                            <image src="{{item3.coverUrl}}"></image>
+                        </view>
+                        <view class="right">
+                            <h4>{{item3.title}}</h4>
+                            <view class="intro">{{item3.intro}}</view>
+                            <view class="bookWriter">
+                                <text class="authorName">{{item3.authorName}}</text>
+                                <text class="allWords">{{Math.round(item3.allWords/10000)}}万字</text>
+                                <text class="categoryName">{{item3.categoryName}}</text>
+                                <text wx:if="{{item3.status==30}}" class="status30">连载</text>
+                                <text wx:if="{{item3.status==50}}" class="status50">完结</text>
+                            </view>
                         </view>
                     </view>
-                </view>
                 </navigator>
-                
             </block>
         </view>
     </view>

@@ -20,7 +20,7 @@
             </navigator>
         </view>
         <view class="hand">
-            <navigator class="channels">
+            <navigator url="../menu/menu?sourceId={{bookinfo.sourceId}}" class="channels">
                 <strong></strong>
                 <text class="channel">查看目录</text>
                 <b class="updatetime">更新于八小时前</b>

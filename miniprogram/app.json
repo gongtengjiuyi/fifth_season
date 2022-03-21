@@ -3,16 +3,17 @@
         "pages/home/home",
         "pages/detail/detail",
         "pages/novel/novel",
-        "pages/menu/menu"
+        "pages/menu/menu",
+        "pages/more/more"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#CCFF99",
-        "navigationBarTitleText": "第五季节中文原创基地",
-        "navigationBarTextStyle": "black"
+        "navigationBarTitleText": "中文原创基地",
+        "navigationBarTextStyle": "black",
+        "onReachBottomDistance":50
     },
     "sitemapLocation": "sitemap.json",
-    "lazyCodeLoading": "requiredComponents",
-    "style": "v2"
+    "lazyCodeLoading": "requiredComponents"
 }
