@@ -1,6 +1,6 @@
 <view class="content">
     <view class="title">{{content.chapterTitle}}</view>
-    <rich-text type="text" space="emsp" nodes="{{content.content}}"></rich-text>
+    <text class="text">{{content.content}}</text>
     <view class="line"></view>
     <view class="bottom">
         <view class="front same" bind:tap="prev" data-prevChapterId="{{content.prevChapterId}}">

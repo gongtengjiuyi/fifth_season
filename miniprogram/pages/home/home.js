@@ -6,6 +6,11 @@ Page({
   data: {
     BannerList: [],
     ChannelList: [],
+    active: 0,
+  },
+  onChange(event) {
+    // event.detail 的值为当前选中项的索引
+    this.setData({ active: event.detail });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -13,7 +18,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: "https://m.taoyuewenhua.com/ajax/book_mall", 
+      url: "https://m.taoyuewenhua.com/ajax/book_mall",
       data: {
         ctype: "2",
         seed: "3716",
@@ -23,7 +28,6 @@ Page({
           BannerList: [...res.data.data.bannerList],
           ChannelList: [...res.data.data.channelList],
         });
-        console.log(res.data);
       },
       fail: (err) => {
         console.log(err);

@@ -1,0 +1,25 @@
+//处理字数显示
+var formatwords = function (val) {
+  return Math.round(val / 10000);
+};
+var formattime = function (val) {
+  var t = getDate(val);
+  return Math.floor(t) <= 60
+    ? Math.floor(t) + "秒前"
+    : Math.floor(t / 60) <= 60
+    ? Math.floor(t / 60) + "分钟前"
+    : Math.floor(t / 60 / 60) <= 24
+    ? Math.floor(t / 60 / 60) + "小时前"
+    : Math.floor(t / 60 / 60 / 24) <= 30
+    ? Math.floor(t / 60 / 60 / 24) + "天前"
+    : t.getFullYear() + "年" + (t.getMonth() + 1) + "月" + t.getDate() + "日";
+};
+var formatcontent = function (val) {
+  var reg = getRegExp('\s',"g");
+  return val= val.replace(reg, "");
+};
+module.exports = {
+  formatwords: formatwords,
+  formattime: formattime,
+  formatcontent: formatcontent,
+};

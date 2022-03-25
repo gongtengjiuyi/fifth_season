@@ -1,4 +1,4 @@
-<view class="detail">
+<view class="detail" wx:if="{{show}}">
     <view class="container">
         <view class="header">
             <view class="img">
@@ -9,7 +9,7 @@
                 <view class="same">作者：{{bookinfo.authorName}}</view>
                 <view class="same">{{bookinfo.categoryName}}/{{bookinfo.subCategoryName}}</view>
                 <view class="same">{{bookinfo.latestChapter}}</view>
-                <view class="same">{{bookinfo.allWords}}</view>
+                <view class="same">{{tools.formatwords(bookinfo.allWords)}}万字</view>
             </view>
         </view>
         <view class="read">
@@ -18,12 +18,22 @@
                     继续阅读
                 </van-button>
             </navigator>
+            <view class="add">
+                <van-button bind:tap="add" wx:if="{{!addbook}}" custom-style="width:100%;height:80rpx;color:#000;font-weight:500;" color="#ffbb1b" type="primary" block>
+                    加入书架
+                </van-button>
+                <van-button bind:tap="remove" wx:if="{{addbook}}" custom-style="width:100%;height:80rpx;color:#000;font-weight:500;" color="#eee" type="primary" block>
+                    已加入书架
+                </van-button>
+            </view>
         </view>
         <view class="hand">
             <navigator url="../menu/menu?sourceId={{bookinfo.sourceId}}" class="channels">
                 <strong></strong>
                 <text class="channel">查看目录</text>
-                <b class="updatetime">更新于八小时前</b>
+                <b class="updatetime">
+                    最近更新于{{tools.formattime(bookinfo.latestChapterUpdateTime)}}
+                </b>
                 <view class="icon">
                     <van-icon name="arrow" />
                 </view>
@@ -34,7 +44,7 @@
                 <strong></strong>
                 <text class="fontSizeChannel">内容简介</text>
             </view>
-            <view class="content">{{intro}}</view>
+            <view class="content">{{tools.formatcontent(bookinfo.intro)}}</view>
         </view>
     </view>
     <view class="bookcomment">
@@ -52,18 +62,20 @@
                         <text class="nick">{{item.nickname}}读过</text>
                     </navigator>
                     <van-icon color="#ffbb1b" wx:for="{{item.score/20}}" wx:for-item="item2" wx:for-index="index2" wx:key="index2" name="star" />
-                    <van-icon wx:for="{{5-(item.score/20)}}" wx:for-item="item3" wx:for-index="index3" wx:key="index3" name="star" />
+                    <van-icon color="#c7c7c7" wx:for="{{5-(item.score/20)}}" wx:for-item="item3" wx:for-index="index3" wx:key="index3" name="star" />
                 </view>
                 <view class="list-body">
                     <text user-selectable="{{true}}" class="comment-content">{{item.content}}</text>
                 </view>
                 <view class="list-foot">
-                    <text class="time">{{Date.toLocalTimeString(item.createdOn)}}</text>
-                    <text class="zan">
-                        <van-icon name="good-job-o" />
-                    </text>
+                    <text class="time">{{tools.formattime(item.createdOn)}}</text>
+                    <view class="zan">
+                        <van-icon color="#2e2e2e" name="good-job-o" />
+                        <text>{{item.upCount}}</text>
+                    </view>
                 </view>
             </view>
         </view>
     </view>
 </view>
+<wxs src="../tools.wxs" module="tools"></wxs>

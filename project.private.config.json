@@ -67,6 +67,34 @@
                     "name": "1",
                     "pathName": "pages/menu/menu",
                     "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/home/home",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "rank",
+                    "pathName": "pages/rank/rank",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "sort",
+                    "pathName": "pages/sort/sort",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/mine/mine",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }

@@ -1,0 +1,21 @@
+<view class="mine">
+    <view class="mine-header">
+        <view class="img" >
+            <image bindtap="toLogin" wx:if="{{show}}" src="../../images/mine.png"></image>
+            <image bindtap="toLoginOut" wx:else src="{{userInfo.avatarUrl}}"></image>
+        </view>
+    </view>
+    <view class="mine-body">
+        <van-tabs sticky="true" active="{{ active }}">
+            <van-tab title="我的书架"></van-tab>
+        </van-tabs>
+        <view class="booklist">
+            <navigator wx:for="{{books}}" url="../detail/detail?sourceId={{item.sourceId}}">
+                <view class="bookitem">
+                    <image src="{{item.cover}}"></image>
+                    <view class="bookname">{{item.title}}</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>

@@ -11,12 +11,24 @@ Page({
   },
   //下一页目录
   addpages() {
-    // console.log(this.data.page,this.data.chapterlist.chapterSize)
     if (this.data.page < Math.floor(this.data.chapterlist.chapterSize / 100)) {
       this.setData({
         page: this.data.page + 1,
       });
       this.getchapterspage(this.data.page);
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300,
+      });
+    } else {
+      wx.showToast({
+        title: "已经是最后一页",
+        icon: "none",
+      });
+
+      setTimeout(function () {
+        wx.hideToast();
+      }, 1000);
     }
   },
   //上一页目录
@@ -26,9 +38,25 @@ Page({
         page: this.data.page - 1,
       });
       this.getchapterspage(this.data.page);
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300,
+      });
+    } else {
+      wx.showToast({
+        title: "已经是第一页了",
+        icon: "none",
+      });
+
+      setTimeout(function () {
+        wx.hideToast();
+      }, 1000);
     }
   },
   getchapterspage(page = 0) {
+    wx.showLoading({
+      title: "加载中",
+    });
     wx.request({
       url: "https://m.taoyuewenhua.com/ajax/chapters",
       data: {
@@ -38,11 +66,10 @@ Page({
         page,
       },
       success: (res) => {
-        console.log(res.data.data);
+        wx.hideLoading();
         this.setData({
           chapterlist: { ...res.data.data },
         });
-        console.log(this.data.chapterSize);
         wx.setNavigationBarTitle({
           title: res.data.data.bookTitle,
         });
@@ -57,6 +84,9 @@ Page({
    */
   onLoad: function (options) {
     if (options.chapterId) {
+      wx.showLoading({
+        title: "加载中",
+      });
       wx.request({
         url: "https://m.taoyuewenhua.com/ajax/chapters",
         data: {
@@ -65,7 +95,7 @@ Page({
           chapterId: options.chapterId,
         },
         success: (res) => {
-          console.log(res);
+          wx.hideLoading();
           this.setData({
             chapterlist: { ...res.data.data },
             sourceId: options.sourceId,
@@ -80,6 +110,9 @@ Page({
         },
       });
     } else {
+      wx.showLoading({
+        title: "加载中",
+      });
       wx.request({
         url: "https://m.taoyuewenhua.com/ajax/chapters",
         data: {
@@ -87,7 +120,7 @@ Page({
           sourceId: options.sourceId,
         },
         success: (res) => {
-          console.log(res);
+          wx.hideLoading();
           this.setData({
             chapterlist: { ...res.data.data },
             sourceId: options.sourceId,

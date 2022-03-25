@@ -1,0 +1,15 @@
+<view class="sort">
+    <van-sidebar active-key="{{ activeKey }}" bind:change="onChange">
+        <van-sidebar-item wx:for="{{freeTypeList}}" wx:key="index" title="{{item.freeTypeName}}" />
+    </van-sidebar>
+    <view class="content">
+        <view class="items">
+            <navigator wx:for="{{list}}" wx:for-item="item1" wx:for-index="index1" wx:key="index1" url="../sortlist/sortlist?categoryId={{item1.categoryId}}">
+                <view class="item">
+                    <image src="{{item1.categoryCover}}"></image>
+                    <text class="name">{{item1.categoryName}}</text>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>

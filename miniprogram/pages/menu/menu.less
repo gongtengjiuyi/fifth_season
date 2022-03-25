@@ -1,21 +1,38 @@
 .menu {
   background-color: #fff;
   .chapters {
+    padding-top: 80rpx;
+    .total{
+      font-size: 26rpx;
+      color: #2e2e2e;
+      padding: 30rpx 10rpx;
+      border-bottom: 2rpx solid #eee;
+      background-color: #f9f9f9;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
     .item {
+      width: 100%;
       border-bottom: 2rpx solid #ededed;
       text {
+        display: block;
         padding: 0 20rpx;
-        width: 600rpx;
+        width: 90%;
         height: 100rpx;
         line-height: 100rpx;
         font-size: 30rpx;
         color: #2e2e2e;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
     }
   }
   .bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 50rpx 30rpx;
     .same {

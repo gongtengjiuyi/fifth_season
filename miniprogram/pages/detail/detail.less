@@ -36,6 +36,14 @@
       margin: 0 30rpx;
       box-sizing: border-box;
       padding-bottom: 26rpx;
+      display: flex;
+      justify-content: space-between;
+      navigator{
+        width: 40%;
+      }
+      .add{
+        width: 40%;
+      }
     }
     .hand {
       width: 100%;
@@ -61,7 +69,7 @@
           color: #2e2e2e;
         }
         .icon {
-          margin: 0 30rpx 0 300rpx;
+          margin: 0 30rpx 0 160rpx;
           color: #2e2e2e;
           opacity: 0.6;
         }
@@ -130,10 +138,15 @@
                     margin-right: 16rpx;
                 }
                 .nick{
+                  display: block;
                     color: #a16400;
                     opacity: .6;
                     line-height: 40rpx;
                     margin-right: 16rpx;
+                    white-space: nowrap;
+                    max-width: 200rpx;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
                 }
             }
             .list-body{
@@ -146,7 +159,18 @@
                 }
             }
             .list-foot{
-                
+              display: flex;
+              justify-content: space-between;
+                .time{
+                  font-size: 24rpx;
+                  color: #2e2e2e;
+                  opacity: .6;;
+                }
+                .zan{
+                  font-size: 24rpx;
+                  color: #2e2e2e;
+                  opacity: .6;
+                }
             }
         }
     }

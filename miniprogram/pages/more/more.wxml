@@ -6,10 +6,10 @@
             </view>
             <view class="right">
                 <h4>{{item.title}}</h4>
-                <view class="intro">{{item.intro}}</view>
+                <view class="intro">{{tools.formatcontent(item.intro)}}</view>
                 <view class="bookWriter">
                     <text class="authorName">{{item.authorName}}</text>
-                    <text class="allWords">{{Math.round(item.allWords/10000)}}万字</text>
+                    <text class="allWords">{{tools.formatwords(item.allWords)}}万字</text>
                     <text class="categoryName">{{item.categoryName}}</text>
                     <text wx:if="{{item.status==30}}" class="status30">连载</text>
                     <text wx:if="{{item.status==50}}" class="status50">完结</text>
@@ -18,3 +18,4 @@
         </view>
     </navigator>
 </view>
+<wxs src="../tools.wxs" module="tools"></wxs>

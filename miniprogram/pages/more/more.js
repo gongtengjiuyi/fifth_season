@@ -13,6 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: "加载中",
+    });
     wx.request({
       url: "https://m.taoyuewenhua.com/ajax/channel_books",
       data: {
@@ -23,6 +26,7 @@ Page({
         pageSize: 10,
       },
       success: (res) => {
+        wx.hideLoading();
         this.setData({
           bookList: [...res.data.data.bookList],
           ctype: options.ctype,
@@ -31,7 +35,6 @@ Page({
         wx.setNavigationBarTitle({
           title: options.title,
         });
-        console.log(res);
       },
       fail: (err) => {
         console.log(err);
@@ -88,7 +91,6 @@ Page({
         this.setData({
           bookList: this.data.bookList.concat([...res.data.data.bookList]),
         });
-        console.log(res);
       },
       fail: (err) => {
         console.log(err);
