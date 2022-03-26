@@ -1,5 +1,6 @@
 // pages/mine/mine.js
 const db = wx.cloud.database({});
+import Dialog from '@vant/weapp/dialog/dialog';
 Page({
   /**
    * 页面的初始数据
@@ -12,23 +13,33 @@ Page({
     books: [],
   },
   toLoginOut() {
-    wx.showToast({
-      title: "退出成功",
-      success: () => {
-        wx.clearStorage();
-        this.setData({
-          openId: "",
-          books: [],
-          uerInfo: {},
-          show: true,
+    Dialog.confirm({
+        message: '确认退出吗？',
+      })
+      .then(() => {
+        wx.showToast({
+          title: "退出成功",
+          success: () => {
+            wx.clearStorage();
+            this.setData({
+              openId: "",
+              books: [],
+              uerInfo: {},
+              show: true,
+            });
+          },
         });
-      },
-    });
+      })
+      .catch(() => {
+        // on cancel
+      });
+
   },
   toLogin() {
     wx.getUserProfile({
       desc: "用于完善用户资料",
       success: (res) => {
+        wx.setStorageSync('userinfo', res.userInfo)
         wx.showToast({
           title: "登录成功",
           icon: "success",
@@ -97,9 +108,13 @@ Page({
    */
   onLoad: function (options) {
     if (wx.getStorageSync("openid")) {
-      this.setData({
-        show: false,
-      });
+      var usermsg = wx.getStorageSync('userinfo')
+      var id = wx.getStorageSync("openid")
+        this.setData({
+          show:false,
+          userInfo:usermsg,
+          openId:id
+        })
     } else {
       this.setData({
         openId: "",
@@ -120,9 +135,19 @@ Page({
    */
   onShow: function () {
     if (wx.getStorageSync("openid")) {
-      this.setData({
-        show: false,
-      });
+      db.collection("fifthSeason_user")
+        .where({
+          _openid:this.data.openId,
+        })
+        .get()
+        .then((res) => {
+          if (res.data.length != 0) {
+            this.setData({
+              show:false,
+              books: res.data[0].books,
+            });
+          }
+        });
     } else {
       this.setData({
         openId: "",
@@ -131,18 +156,6 @@ Page({
         show: true,
       });
     }
-    db.collection("fifthSeason_user")
-      .where({
-        _openid: this.data.openId,
-      })
-      .get()
-      .then((res) => {
-        if (res.data.length != 0) {
-          this.setData({
-            books: res.data[0].books,
-          });
-        }
-      });
   },
 
   /**

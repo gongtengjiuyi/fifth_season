@@ -102,7 +102,9 @@ Page({
       success: (res) => {
         wx.hideLoading();
         this.setData({
-          bookinfo: { ...res.data.data },
+          bookinfo: {
+            ...res.data.data
+          },
           show: true,
           sourceId: options.sourceId,
         });
@@ -140,23 +142,15 @@ Page({
       db.collection("fifthSeason_user")
         .where({
           _openid: wx.getStorageSync("openid"),
-          books: _.all([
-            _.elemMatch({
-              sourceId: this.data.sourceId,
-            }),
-          ]),
         })
         .get({
           success: (res) => {
-            if (res.data.length != 0) {
-              this.setData({
-                addbook: true,
-              });
-            } else {
-              this.setData({
-                addbook: false,
-              });
-            }
+            var q = res.data[0].books.some((item) => {
+              return item.sourceId == this.data.sourceId
+            })
+            this.setData({
+              addbook: q
+            })
           },
         });
     }
@@ -165,8 +159,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

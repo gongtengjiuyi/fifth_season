@@ -16,10 +16,4 @@ App({
 
     this.globalData = {};
   },
-  onHide: function () {
-    wx.clearStorage()
-  },
-  onShow: function () {
-    wx.clearStorage()
-  },
 });
