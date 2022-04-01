@@ -13,7 +13,7 @@
             </view>
         </view>
         <view class="read">
-            <navigator url="../novel/novel?sourceId={{bookinfo.sourceId}}&title={{bookinfo.title}}">
+            <navigator url="../novel/novel?sourceId={{bookinfo.sourceId}}&title={{bookinfo.title}}&chapterId={{chapterId}}">
                 <van-button custom-style="width:100%;height:80rpx;color:#000;font-weight:500;" color="#ffbb1b" type="primary" block>
                     继续阅读
                 </van-button>

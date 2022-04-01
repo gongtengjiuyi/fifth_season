@@ -11,6 +11,7 @@ Page({
     sourceId: "",
     //判断是否加入书架
     addbook: false,
+    chapterId:''
   },
   //添加到书架
   add() {
@@ -27,7 +28,7 @@ Page({
               cover: this.data.bookinfo.coverUrl,
               sourceId: this.data.sourceId,
               title: this.data.bookinfo.title,
-              chapterId: wx.getStorageSync("chapterId"),
+              chapterId: this.data.chapterId
             }),
           },
           success: (res) => {
@@ -65,8 +66,7 @@ Page({
             books: _.pull({
               cover: this.data.bookinfo.coverUrl,
               sourceId: this.data.sourceId,
-              title: this.data.bookinfo.title,
-              chapterId: wx.getStorageSync("chapterId"),
+              title: this.data.bookinfo.title
             }),
           },
           success: (res) => {
@@ -102,6 +102,7 @@ Page({
       success: (res) => {
         wx.hideLoading();
         this.setData({
+          chapterId:wx.getStorageSync("chapterId"),
           bookinfo: {
             ...res.data.data
           },
@@ -148,6 +149,23 @@ Page({
             var q = res.data[0].books.some((item) => {
               return item.sourceId == this.data.sourceId
             })
+            if(q){
+              db.collection("fifthSeason_user")
+              .where({
+                _openid: wx.getStorageSync("openid"),
+              })
+              .get({
+                success:(res=>{
+                   res.data[0].books.forEach((item)=>{
+                    if(item.sourceId==this.data.sourceId){
+                      this.setData({
+                        chapterId:item.chapterId
+                      })
+                    }
+                  })
+                })
+              })
+            }
             this.setData({
               addbook: q
             })
@@ -159,7 +177,42 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    if (wx.getStorageSync("openid")) {
+      const _ = db.command;
+      db.collection("fifthSeason_user")
+        .where({
+          _openid: wx.getStorageSync("openid"),
+        })
+        .get({
+          success: (res) => {
+            var q = res.data[0].books.some((item) => {
+              return item.sourceId == this.data.sourceId
+            })
+            if(q){
+              db.collection("fifthSeason_user")
+              .where({
+                _openid: wx.getStorageSync("openid"),
+              })
+              .get({
+                success:(res=>{
+                   res.data[0].books.forEach((item)=>{
+                    if(item.sourceId==this.data.sourceId){
+                      this.setData({
+                        chapterId:item.chapterId
+                      })
+                    }
+                  })
+                })
+              })
+            }
+            this.setData({
+              addbook: q
+            })
+          },
+        });
+    }
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -169,7 +222,8 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () {
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -1,4 +1,5 @@
 // pages/novel/novel.js
+const db = wx.cloud.database()
 Page({
   /**
    * 页面的初始数据
@@ -8,6 +9,7 @@ Page({
     sourceId: "",
     chapterId: "",
   },
+  //下一章
   next(event) {
     if (event.currentTarget.dataset.nextchapterid == undefined) {
       wx.showToast({
@@ -26,6 +28,7 @@ Page({
       });
     }
   },
+  //上一张
   prev(event) {
     if (event.currentTarget.dataset.prevchapterid == undefined) {
       wx.showToast({
@@ -44,7 +47,7 @@ Page({
       });
     }
   },
-  getnovel(nextChapterId) {
+  getnovel(ChapterId) {
     wx.showLoading({
       title: "加载中",
     });
@@ -53,13 +56,13 @@ Page({
       data: {
         sourceName: "tf",
         sourceId: this.data.sourceId,
-        chapterId: nextChapterId,
+        chapterId: ChapterId,
       },
       success: (res) => {
         wx.hideLoading();
         this.setData({
           content: res.data.data,
-          chapterId: nextChapterId,
+          chapterId:ChapterId,
         });
       },
       fail: (err) => {
@@ -135,7 +138,34 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wx.setStorageSync("chapterId", this.data.chapterId);
+    //如果为登录状态
+    if (wx.getStorageSync("openid")) {
+      const _ = db.command;
+      db.collection("fifthSeason_user")
+        .where({
+          _openid: wx.getStorageSync("openid"),
+        })
+        .get({
+          success: (res) => {
+            var q = res.data[0].books.some((item) => {
+              return item.sourceId == this.data.sourceId
+            })
+            //如果加入书架，退出把chapterId存入数据库
+            if(q){
+              db.collection("fifthSeason_user")
+              .where({
+                _openid: wx.getStorageSync("openid"),
+                books:{'sourceId':this.data.sourceId}
+              })
+              .update({
+                data:{
+                  'books.$.chapterId':this.data.chapterId
+                }
+              })
+            }
+          },
+        });
+    }
   },
 
   /**

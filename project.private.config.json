@@ -95,6 +95,13 @@
                     "name": "",
                     "pathName": "pages/mine/mine",
                     "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/test/test",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }
